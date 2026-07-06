@@ -1,0 +1,354 @@
+﻿<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>Mi Reserva — Casa Los Curazaos</title>
+<meta name="description" content="Consulta el estado de tu reserva y solicita cambios de fecha." />
+<meta name="theme-color" content="#f3ece0" />
+<meta name="robots" content="noindex" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..500&family=Inter:wght@300;400;450;500;600&family=JetBrains+Mono:wght@400;500&display=swap" />
+
+<link rel="stylesheet" href="styles.css?v=20260531a" />
+</head>
+<body>
+
+<a class="skip-link" href="#main">Saltar al contenido</a>
+
+<div class="splash" data-splash aria-hidden="true">
+  <div class="splash-inner">
+    <span class="splash-mark">Mi Reserva</span>
+    <span class="splash-line">Gestiona tu estadía</span>
+  </div>
+</div>
+
+<header class="nav" data-nav>
+  <div class="container nav-inner">
+    <a class="nav-brand" href="index.html">
+      <span class="nav-brand-mark">CLC</span>
+      <span>Casa <em>Los Curazaos</em></span>
+    </a>
+    <nav aria-label="Principal">
+      <ul class="nav-links">
+        <li><a class="nav-link" href="index.html">Inicio</a></li>
+        <li><a class="nav-link" href="index.html#cabanas">Cabañas</a></li>
+        <li><a class="nav-link" href="experiencias.html">Experiencias</a></li>
+        <li><a class="nav-link" href="beneficios.html">Beneficios</a></li>
+        <li><a class="nav-link" href="mi-reserva.html">Mi Reserva</a></li>
+        <li><a class="nav-link" href="contacto.html">Contacto</a></li>
+        <li><a class="nav-icon-link" href="https://instagram.com/casaloscurazaos" target="_blank" rel="noopener" aria-label="Instagram @casaloscurazaos"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a></li>
+      </ul>
+    </nav>
+    <a class="nav-cta" href="reservar.html">Ver Disponibilidad</a>
+    <button class="nav-toggle" aria-label="Abrir menú" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<aside class="nav-mobile" aria-hidden="true">
+  <ul class="nav-mobile-links">
+    <li><a class="nav-mobile-link" href="index.html">Inicio</a></li>
+    <li><a class="nav-mobile-link" href="index.html#cabanas">Cabañas</a></li>
+    <li><a class="nav-mobile-link" href="experiencias.html">Experiencias</a></li>
+    <li><a class="nav-mobile-link" href="beneficios.html">Beneficios</a></li>
+    <li><a class="nav-mobile-link" href="mi-reserva.html">Mi Reserva</a></li>
+    <li><a class="nav-mobile-link" href="contacto.html">Contacto</a></li>
+      <li><a class="nav-mobile-link" href="https://instagram.com/casaloscurazaos" target="_blank" rel="noopener">📷 Instagram</a></li>
+  </ul>
+  <div class="nav-mobile-foot">
+    <span>Llanogrande · Rionegro · Colombia 🇨🇴</span>
+    <span>Casa Los Curazaos</span>
+  </div>
+</aside>
+
+<main id="main">
+
+<section class="hero-page">
+  <div class="container container-narrow">
+    <div data-reveal>
+      <p class="eyebrow hero-page-eyebrow"><span class="dot"></span>Portal del huésped</p>
+      <h1 class="hero-page-title">Mi <em>Reserva</em></h1>
+      <p class="hero-page-sub">
+        Ingresa tu código de orden para consultar tu reserva y, si es necesario, solicitar un cambio de fecha.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container container-narrow">
+
+    <!-- Formulario de búsqueda -->
+    <div class="lookup-wrap" data-reveal>
+      <div class="booking-field">
+        <label for="order-input">Código de orden</label>
+        <input type="text" id="order-input" placeholder="CLC-XXXXXX" autocomplete="off"
+               style="font-family: var(--mono); letter-spacing: .06em; text-transform: uppercase;" />
+      </div>
+      <button id="lookup-btn" class="btn btn-accent mt-3" style="width:100%">Buscar reserva</button>
+      <p id="lookup-error" style="color:var(--accent); font-size:.87rem; margin-top:.75rem; display:none;"></p>
+    </div>
+
+    <!-- Resultado -->
+    <div id="reservation-result" style="display:none" data-reveal>
+
+      <!-- Tarjeta de reserva -->
+      <div class="mireserva-card">
+        <div class="mireserva-cabin" id="r-cabin"></div>
+        <div class="mireserva-meta">
+          <span><strong>Check-in</strong><span id="r-checkin"></span></span>
+          <span><strong>Check-out</strong><span id="r-checkout"></span></span>
+          <span><strong>Noches</strong><span id="r-nights"></span></span>
+          <span><strong>Huéspedes</strong><span id="r-guests"></span></span>
+          <span><strong>Nombre</strong><span id="r-name"></span></span>
+          <span><strong>Estado</strong><span id="r-status"></span></span>
+        </div>
+        <p id="r-order" style="font-family:var(--mono); font-size:.8rem; color:var(--ink-faint);"></p>
+      </div>
+
+      <!-- Badge de política -->
+      <div id="policy-badge" class="change-policy-badge"></div>
+
+      <!-- Formulario de cambio de fecha -->
+      <div id="change-form-wrap">
+        <p class="eyebrow mt-4" style="margin-bottom:1rem;"><span class="dot"></span>Solicitar cambio de fecha</p>
+
+        <div class="booking-fields-row">
+          <div class="booking-field">
+            <label for="new-start">Nueva fecha de llegada *</label>
+            <input type="date" id="new-start" />
+          </div>
+          <div class="booking-field">
+            <label for="new-end">Nueva fecha de salida *</label>
+            <input type="date" id="new-end" />
+          </div>
+        </div>
+
+        <div class="booking-field mt-3">
+          <label for="change-msg">Mensaje adicional (opcional)</label>
+          <input type="text" id="change-msg" placeholder="Motivo del cambio, preferencias, etc." />
+        </div>
+
+        <button id="change-btn" class="btn btn-accent mt-4">Enviar solicitud</button>
+        <p id="change-error"  style="color:var(--accent); font-size:.87rem; margin-top:.75rem; display:none;"></p>
+        <p id="change-success" style="color:var(--accent-2); font-size:.9rem; margin-top:.75rem; display:none;"></p>
+      </div>
+
+    </div>
+
+    <!-- Nota de política -->
+    <div class="mt-6" data-reveal style="padding:1.5rem; background:rgba(31,27,22,.04); border-radius:var(--radius); font-size:.85rem; color:var(--ink-mute); line-height:1.6;">
+      <strong style="color:var(--ink-soft); display:block; margin-bottom:.5rem;">Recordatorio de política</strong>
+      Las reservas web no son reembolsables. Los cambios de fecha están permitidos hasta 8 días antes del check-in sin penalidad.
+      Entre 8 días y 48 horas aplica una penalidad del 50%.
+      Con menos de 48 horas no se aceptan cambios.
+      <a href="politicas.html" style="color:var(--accent); text-decoration:underline; white-space:nowrap;">Ver política completa →</a>
+    </div>
+
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <p class="footer-brand">Casa Los <em>Curazaos</em></p>
+        <p class="footer-tagline">Refugio campestre con tres cabañas privadas en Llanogrande, Rionegro.</p>
+      </div>
+      <div>
+        <p class="footer-title">Cabañas</p>
+        <ul class="footer-list">
+          <li><a href="cabana-luxe.html">Luxe</a></li>
+          <li><a href="cabana-comfort.html">Comfort</a></li>
+          <li><a href="cabana-prestige.html">Prestige</a></li>
+          <li><a href="casa-completa.html">Deluxe House</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="footer-title">Explorar</p>
+        <ul class="footer-list">
+          <li><a href="experiencias.html">Experiencias</a></li>
+          <li><a href="beneficios.html">Beneficios</a></li>
+          <li><a href="reservar.html">Reservar</a></li>
+          <li><a href="contacto.html">Contacto</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="footer-title">Legal</p>
+        <ul class="footer-list">
+          <li><a href="politicas.html">Políticas</a></li>
+          <li><a href="contrato.html">Contrato</a></li>
+          <li><a href="mi-reserva.html">Mi Reserva</a></li>
+          <li><a href="sarlaft.html">SARLAFT</a></li>
+
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© <span data-year>2026</span> Casa Los Curazaos · LEMONT GROUP S.A.S.</span>
+      <span class="footer-legal">
+        <span>Diseño: <a href="https://bayronlondono.com" target="_blank" rel="noopener">Bayron Londoño</a></span>
+        <span><a href="https://instagram.com/casaloscurazaos" target="_blank" rel="noopener">@casaloscurazaos</a></span>
+      </span>
+    </div>
+  </div>
+</footer>
+
+<script defer src="lib/gsap.min.js"></script>
+<script defer src="lib/ScrollTrigger.min.js"></script>
+<script defer src="lib/manifest.js?v=20260531a"></script>
+<script defer src="main.js?v=20260531a"></script>
+
+<script>
+(function() {
+  var MES = ['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic'];
+  var DIA = ['domingo','lunes','martes','miércoles','jueves','viernes','sábado'];
+
+  function fmtDate(ymd) {
+    var p = ymd.split('-');
+    var d = new Date(+p[0], +p[1]-1, +p[2]);
+    return DIA[d.getDay()] + ' ' + d.getDate() + ' ' + MES[+p[1]-1] + ' ' + p[0];
+  }
+
+  function setTxt(id, val) { var el = document.getElementById(id); if (el) el.textContent = val; }
+  function show(id) { document.getElementById(id).style.display = ''; }
+  function hide(id) { document.getElementById(id).style.display = 'none'; }
+  function showErr(id, msg) { var el = document.getElementById(id); el.textContent = msg; el.style.display = ''; }
+  function hideErr(id) { document.getElementById(id).style.display = 'none'; }
+
+  function policyBadge(days) {
+    var badge = document.getElementById('policy-badge');
+    var changeWrap = document.getElementById('change-form-wrap');
+    if (days < 0) {
+      badge.className = 'change-policy-badge change-policy-past';
+      badge.innerHTML = '<span class="cpb-icon">📅</span><div><strong>Estadía finalizada o en curso</strong>No es posible solicitar cambios de fecha.</div>';
+      changeWrap.style.display = 'none';
+      return;
+    }
+    if (days >= 8) {
+      badge.className = 'change-policy-badge change-policy-ok';
+      badge.innerHTML = '<span class="cpb-icon">✅</span><div><strong>Cambio de fecha sin penalidad</strong>Faltan ' + days + ' días para tu check-in. Puedes solicitar el cambio de forma gratuita.</div>';
+      changeWrap.style.display = '';
+    } else if (days >= 2) {
+      badge.className = 'change-policy-badge change-policy-warn';
+      badge.innerHTML = '<span class="cpb-icon">⚠️</span><div><strong>Penalidad del 50%</strong>Faltan ' + days + ' días para tu check-in. Si solicitas un cambio se aplicará una penalidad del 50% sobre el valor total.</div>';
+      changeWrap.style.display = '';
+    } else {
+      badge.className = 'change-policy-badge change-policy-no';
+      badge.innerHTML = '<span class="cpb-icon">🚫</span><div><strong>Cambio no permitido</strong>Faltan menos de 48 horas para tu check-in. No es posible solicitar cambios en este momento.</div>';
+      changeWrap.style.display = 'none';
+    }
+  }
+
+  var currentOrderId = null;
+
+  // Pre-fill desde URL ?order=
+  var urlParams = new URLSearchParams(location.search);
+  var preOrder = urlParams.get('order');
+  if (preOrder) {
+    document.getElementById('order-input').value = preOrder.toUpperCase();
+  }
+
+  // Buscar reserva
+  document.getElementById('lookup-btn').addEventListener('click', function() {
+    var orderId = document.getElementById('order-input').value.trim().toUpperCase();
+    if (!orderId) { showErr('lookup-error', 'Ingresa tu código de orden.'); return; }
+    hideErr('lookup-error');
+    hide('reservation-result');
+    this.textContent = 'Buscando…';
+    this.disabled = true;
+
+    fetch('api/reservation-lookup.php?orderId=' + encodeURIComponent(orderId))
+      .then(function(r) { return r.json(); })
+      .then(function(data) {
+        document.getElementById('lookup-btn').textContent = 'Buscar reserva';
+        document.getElementById('lookup-btn').disabled = false;
+        if (!data.ok) {
+          showErr('lookup-error', data.error || 'Reserva no encontrada.');
+          return;
+        }
+        var r = data.reservation;
+        currentOrderId = r.orderId;
+
+        setTxt('r-cabin', r.cabinName);
+        setTxt('r-checkin', fmtDate(r.start));
+        setTxt('r-checkout', fmtDate(r.end));
+        setTxt('r-nights', (r.nights || '—') + (r.nights === 1 ? ' noche' : ' noches'));
+        var guests = (r.adults || 1) + ' adulto' + ((r.adults || 1) > 1 ? 's' : '');
+        if (r.children > 0) guests += ' · ' + r.children + ' niño' + (r.children > 1 ? 's' : '');
+        setTxt('r-guests', guests);
+        setTxt('r-name', r.name);
+        var statusMap = { confirmed: 'Confirmada ✓', pending: 'Pendiente de pago' };
+        setTxt('r-status', statusMap[r.status] || r.status);
+        setTxt('r-order', 'Orden · ' + r.orderId);
+
+        policyBadge(r.daysUntilCheckin);
+        hideErr('change-error');
+        hideErr('change-success');
+        show('reservation-result');
+      })
+      .catch(function() {
+        document.getElementById('lookup-btn').textContent = 'Buscar reserva';
+        document.getElementById('lookup-btn').disabled = false;
+        showErr('lookup-error', 'Error de conexión. Intenta nuevamente.');
+      });
+  });
+
+  // Enviar solicitud de cambio
+  document.getElementById('change-btn').addEventListener('click', function() {
+    if (!currentOrderId) return;
+    var newStart = document.getElementById('new-start').value;
+    var newEnd   = document.getElementById('new-end').value;
+    var message  = document.getElementById('change-msg').value.trim();
+
+    if (!newStart || !newEnd) { showErr('change-error', 'Ingresa las nuevas fechas.'); return; }
+    if (newStart >= newEnd)   { showErr('change-error', 'La fecha de salida debe ser posterior a la de llegada.'); return; }
+    hideErr('change-error');
+    this.textContent = 'Enviando…';
+    this.disabled = true;
+
+    fetch('api/change-request.php', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ orderId: currentOrderId, newStart: newStart, newEnd: newEnd, message: message })
+    })
+    .then(function(r) { return r.json(); })
+    .then(function(data) {
+      document.getElementById('change-btn').textContent = 'Enviar solicitud';
+      document.getElementById('change-btn').disabled = false;
+      if (!data.ok) {
+        showErr('change-error', data.error || 'No fue posible enviar la solicitud.');
+        return;
+      }
+      hideErr('change-error');
+      var el = document.getElementById('change-success');
+      el.textContent = '✓ Solicitud enviada. ' + data.message;
+      el.style.display = '';
+      document.getElementById('change-form-wrap').style.display = 'none';
+    })
+    .catch(function() {
+      document.getElementById('change-btn').textContent = 'Enviar solicitud';
+      document.getElementById('change-btn').disabled = false;
+      showErr('change-error', 'Error de conexión. Intenta nuevamente.');
+    });
+  });
+
+  // Buscar automáticamente si viene ?order= en URL
+  if (preOrder) {
+    document.getElementById('lookup-btn').click();
+  }
+
+  // Enter en el input
+  document.getElementById('order-input').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') document.getElementById('lookup-btn').click();
+  });
+})();
+</script>
+</body>
+</html>

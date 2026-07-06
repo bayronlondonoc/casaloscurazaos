@@ -1,0 +1,17 @@
+# ── Credenciales (solo viven en Hostinger, NUNCA en git) ──────────────
+site/api/_config.php
+
+# ── Datos en producción (Hostinger filesystem) ────────────────────────
+site/api/data/reservas.json
+site/api/data/log.txt
+
+# ── Claude Code (configuración local) ────────────────────────────────
+.claude/settings.local.json
+
+# ── OS ────────────────────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ── Node ──────────────────────────────────────────────────────────────
+node_modules/

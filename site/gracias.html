@@ -1,0 +1,372 @@
+﻿<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>Gracias por tu reserva — Casa Los Curazaos</title>
+<meta name="description" content="Tu reserva en Casa Los Curazaos quedó en firme. Te enviamos los detalles por email." />
+<meta name="theme-color" content="#f3ece0" />
+<meta name="robots" content="noindex" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..500&family=Inter:wght@300;400;450;500;600&family=JetBrains+Mono:wght@400;500&display=swap" />
+
+<link rel="stylesheet" href="styles.css?v=20260526c" />
+</head>
+<body>
+
+<a class="skip-link" href="#main">Saltar al contenido</a>
+
+<header class="nav" data-nav>
+  <div class="container nav-inner">
+    <a class="nav-brand" href="index.html">
+      <span class="nav-brand-mark">CLC</span>
+      <span>Casa <em>Los Curazaos</em></span>
+    </a>
+    <nav aria-label="Principal">
+      <ul class="nav-links">
+        <li><a class="nav-link" href="index.html">Inicio</a></li>
+        <li><a class="nav-link" href="index.html#cabanas">Cabañas</a></li>
+        <li><a class="nav-link" href="experiencias.html">Experiencias</a></li>
+        <li><a class="nav-link" href="beneficios.html">Beneficios</a></li>
+        <li><a class="nav-link" href="mi-reserva.html">Mi Reserva</a></li>
+        <li><a class="nav-link" href="contacto.html">Contacto</a></li>
+        <li><a class="nav-icon-link" href="https://instagram.com/casaloscurazaos" target="_blank" rel="noopener" aria-label="Instagram @casaloscurazaos"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a></li>
+      </ul>
+    </nav>
+    <a class="nav-cta" href="reservar.html">Ver Disponibilidad</a>
+    <button class="nav-toggle" aria-label="Abrir menú" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main id="main">
+
+<section class="voucher-page">
+  <div class="container-narrow">
+
+    <!-- Encabezado de éxito -->
+    <div class="voucher-top" data-reveal>
+      <div class="voucher-check-icon" aria-hidden="true">✓</div>
+      <p class="eyebrow" style="justify-content:center;display:inline-flex;"><span class="dot"></span>Reserva recibida</p>
+      <h1 class="voucher-h1">Tu reserva<br><em>quedó confirmada.</em></h1>
+      <p class="voucher-subtitle">Te enviamos los detalles por email. A continuación tu resumen completo.</p>
+    </div>
+
+    <!-- Tarjeta de reserva (llena JS desde sessionStorage) -->
+    <div id="voucher-card" class="voucher-card" data-reveal data-delay="1" style="display:none">
+      <div class="voucher-card-cabin" id="v-cabin-name"></div>
+      <p class="voucher-confirm-code" id="v-order"></p>
+      <div class="voucher-dates">
+        <div class="voucher-date-col">
+          <span class="voucher-date-label">Check-in · 4:00 p. m.</span>
+          <span class="voucher-date-val" id="v-checkin">—</span>
+        </div>
+        <div class="voucher-date-sep">→</div>
+        <div class="voucher-date-col">
+          <span class="voucher-date-label">Check-out · 11:00 a. m.</span>
+          <span class="voucher-date-val" id="v-checkout">—</span>
+        </div>
+      </div>
+      <div class="voucher-card-meta">
+        <span id="v-nights"></span>
+        <span class="voucher-meta-dot">·</span>
+        <span id="v-guests"></span>
+      </div>
+      <hr class="voucher-divider" />
+      <div class="voucher-card-person">
+        <span id="v-name"></span>
+        <span id="v-email"></span>
+      </div>
+      <div class="voucher-card-total">
+        <span class="voucher-total-label">Total pagado</span>
+        <span class="voucher-total-val" id="v-amount"></span>
+      </div>
+    </div>
+
+    <!-- Agregar al calendario de Google + Imprimir -->
+    <div id="gcal-wrap" class="mt-5 text-center" style="display:none">
+      <div style="display:flex; gap:.75rem; justify-content:center; flex-wrap:wrap;">
+        <a id="gcal-btn" href="#" target="_blank" rel="noopener" class="btn btn-ghost">
+          📅 Agregar al Calendario de Google
+        </a>
+        <button class="btn btn-ghost no-print" onclick="window.print()">🖨️ Imprimir confirmación</button>
+      </div>
+    </div>
+
+    <!-- Mensaje de bienvenida -->
+    <div class="voucher-section mt-6" data-reveal data-delay="2">
+      <p class="eyebrow"><span class="dot"></span>Mensaje de bienvenida</p>
+      <div class="voucher-welcome mt-4">
+        <p>🏡 <strong>¡Bienvenido a Casa Los Curazaos!</strong><br>
+          Esperamos que disfrutes una estadía tranquila, rodeada de naturaleza, y que te sientas como en tu propia casa de campo.</p>
+        <p>📲 <strong>Importante:</strong><br>
+          Por favor, escríbenos al menos <strong>1 hora antes de tu llegada</strong> para coordinar el ingreso y asegurarnos de que el portón esté abierto cuando llegues.</p>
+        <p>📌 <strong>Información adicional:</strong><br>
+          Recibirás todos los detalles del alojamiento a través del WhatsApp que registraste.</p>
+        <p>¡Estamos felices de recibirte! Bienvenid@ a Casa Los Curazaos 🌿</p>
+      </div>
+    </div>
+
+    <!-- Qué incluye tu alojamiento (expandible) -->
+    <div class="voucher-section mt-4" data-reveal data-delay="3">
+      <details class="voucher-includes">
+        <summary>
+          <p class="eyebrow" style="pointer-events:none;margin:0"><span class="dot"></span>¿Qué incluye tu alojamiento?</p>
+          <span class="voucher-includes-chevron" aria-hidden="true">↓</span>
+        </summary>
+        <div class="voucher-includes-body">
+
+          <div class="vi-group">
+            <h4 class="vi-title">🧼 Limpieza y utensilios básicos</h4>
+            <ul class="vi-list">
+              <li>Un par de toallas reutilizables para cocina</li>
+              <li>Jabón para lavar platos</li>
+              <li>Una esponja nueva</li>
+              <li>Servilletas en la mesa</li>
+              <li>Una bolsa grande de basura</li>
+              <li>Una bolsa papelera para baño (por cada 2 días de estadía)</li>
+            </ul>
+            <p class="vi-note">☕ También te dejamos <strong>café, azúcar y sal</strong>, para que disfrutes desde tu primera mañana.</p>
+          </div>
+
+          <div class="vi-group">
+            <h4 class="vi-title">🧻 Baño equipado</h4>
+            <ul class="vi-list">
+              <li>2 rollos de papel higiénico nuevos por baño (suficientes para hasta 8 días)</li>
+              <li>2 toallas para el cuerpo por huésped; toallas de mano en cada baño</li>
+            </ul>
+            <p class="vi-note">⚠️ Por favor no uses las toallas para pisar — se manchan fácilmente. Para estadías mayores a 5 días podemos cambiarlas previa solicitud.</p>
+          </div>
+
+          <div class="vi-group">
+            <h4 class="vi-title">🛀 Jacuzzi privado</h4>
+            <ul class="vi-list">
+              <li>Fácil de usar · tarda ~1 hora en calentar</li>
+              <li>Te enviamos un video con instrucciones por WhatsApp</li>
+            </ul>
+          </div>
+
+          <div class="vi-group">
+            <h4 class="vi-title">🫕 Zona BBQ</h4>
+            <ul class="vi-list">
+              <li>Asador a gas</li>
+              <li>Instrucciones en video por WhatsApp</li>
+            </ul>
+          </div>
+
+          <div class="vi-group">
+            <h4 class="vi-title">🎚️ Control del portón vehicular</h4>
+            <p class="vi-note">Te entregamos un botón para abrir y cerrar la puerta de ingreso. Recuerda presionarlo para cerrar después de entrar. <strong>Verifica siempre que quede cerrado.</strong></p>
+          </div>
+
+          <div class="vi-group">
+            <h4 class="vi-title">🚫 Uso del sanitario</h4>
+            <p class="vi-note">No arroje papel higiénico al inodoro — use la caneca del baño. Si se presenta una obstrucción por mal uso, el huésped deberá asumir el costo del arreglo.</p>
+          </div>
+
+          <div class="vi-group">
+            <h4 class="vi-title">🗑️ Basuras</h4>
+            <p class="vi-note">Cuando las canecas estén llenas, mete la basura en una bolsa y sácala a la calle principal, en la esquina al salir de las cabañas.</p>
+          </div>
+
+          <div class="vi-group">
+            <h4 class="vi-title">📺 Smart TV</h4>
+            <ul class="vi-list">
+              <li>Sin suscripciones incluidas (Netflix, Disney+, etc.)</li>
+              <li>Ingresa con tu cuenta y cierra sesión al salir, o nosotros lo hacemos por ti</li>
+            </ul>
+          </div>
+
+          <p class="vi-footer">🤝 ¡Estamos aquí para que tengas una experiencia increíble! Disfruta tu estadía en Casa Los Curazaos 🌿</p>
+        </div>
+      </details>
+    </div>
+
+    <!-- Próximos pasos -->
+    <div class="voucher-section mt-4" data-reveal data-delay="4">
+      <p class="eyebrow"><span class="dot"></span>Próximos pasos</p>
+      <ul class="next-steps mt-4">
+        <li>
+          <span class="ns-label">Hoy</span>
+          <span class="ns-desc">Revisa tu correo electrónico con la confirmación y el resumen del pago.</span>
+        </li>
+        <li>
+          <span class="ns-label">Un día antes del check-in</span>
+          <span class="ns-desc">Te enviamos la ubicación exacta y las indicaciones de acceso al WhatsApp que registraste.</span>
+        </li>
+        <li>
+          <span class="ns-label">El día del check-in</span>
+          <span class="ns-desc">Entre las 4:00 p.&nbsp;m. y media noche, compartimos el tutorial del jacuzzi y los datos del Wi-Fi.</span>
+        </li>
+        <li>
+          <span class="ns-label">Durante tu estadía</span>
+          <span class="ns-desc">Nuestro equipo queda disponible por mensaje para cualquier inquietud o pregunta.</span>
+        </li>
+      </ul>
+    </div>
+
+    <div class="mt-6 text-center" data-reveal data-delay="5" style="padding:1.5rem; background:rgba(182,96,58,.07); border-radius:var(--radius);">
+      <p style="font-size:.95rem; color:var(--ink-soft); margin-bottom:1rem;">
+        ¿Necesitas <strong>cambiar la fecha</strong> de tu estadía? Consulta o gestiona tu reserva con tu código de orden.
+      </p>
+      <a id="mireserva-link" class="btn btn-accent" href="mi-reserva.html">📋 Gestionar mi reserva</a>
+    </div>
+
+    <div class="mt-6 text-center no-print" data-reveal data-delay="6">
+      <a class="btn btn-primary btn-large" href="index.html">Volver al inicio</a>
+    </div>
+
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <p class="footer-brand">Casa Los <em>Curazaos</em></p>
+        <p class="footer-tagline">Refugio campestre con tres cabañas privadas en Llanogrande, Rionegro.</p>
+      </div>
+      <div>
+        <p class="footer-title">Cabañas</p>
+        <ul class="footer-list">
+          <li><a href="cabana-luxe.html">Luxe</a></li>
+          <li><a href="cabana-comfort.html">Comfort</a></li>
+          <li><a href="cabana-prestige.html">Prestige</a></li>
+          <li><a href="casa-completa.html">Deluxe House</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="footer-title">Explorar</p>
+        <ul class="footer-list">
+          <li><a href="experiencias.html">Experiencias</a></li>
+          <li><a href="beneficios.html">Beneficios</a></li>
+          <li><a href="reservar.html">Reservar</a></li>
+          <li><a href="contacto.html">Contacto</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="footer-title">Legal</p>
+        <ul class="footer-list">
+          <li><a href="politicas.html">Políticas</a></li>
+          <li><a href="contrato.html">Contrato</a></li>
+          <li><a href="mi-reserva.html">Mi Reserva</a></li>
+          <li><a href="sarlaft.html">SARLAFT</a></li>
+
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© <span data-year>2026</span> Casa Los Curazaos · LEMONT GROUP S.A.S.</span>
+      <span class="footer-legal">
+        <span>Diseño: <a href="https://bayronlondono.com" target="_blank" rel="noopener">Bayron Londoño</a></span>
+        <span><a href="https://instagram.com/casaloscurazaos" target="_blank" rel="noopener">@casaloscurazaos</a></span>
+      </span>
+    </div>
+  </div>
+</footer>
+
+<script defer src="lib/gsap.min.js"></script>
+<script defer src="lib/ScrollTrigger.min.js"></script>
+<script defer src="lib/manifest.js?v=20260526c"></script>
+<script defer src="main.js?v=20260526c"></script>
+
+<script>
+/* ── 1. Render voucher desde sessionStorage ─────────────────── */
+(function() {
+  var CABINS = {
+    'luxe': 'Cabaña Luxe',
+    'comfort': 'Cabaña Comfort',
+    'prestige': 'Cabaña Prestige',
+    'casa-completa': 'Deluxe House — las 3 cabañas'
+  };
+  var MES  = ['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic'];
+  var DIA  = ['domingo','lunes','martes','miércoles','jueves','viernes','sábado'];
+
+  function fmtDate(ymd) {
+    var p = ymd.split('-');
+    var d = new Date(+p[0], +p[1]-1, +p[2]);
+    return DIA[d.getDay()] + ' ' + d.getDate() + ' de ' + MES[d.getMonth()] + ' ' + p[0];
+  }
+  function fmtCOP(n) {
+    return '$ ' + Number(n).toLocaleString('es-CO') + ' COP';
+  }
+  function gcalUrl(b) {
+    var cab = CABINS[b.cabin] || b.cabin;
+    return 'https://calendar.google.com/calendar/render?action=TEMPLATE'
+      + '&text=' + encodeURIComponent('Estadía Casa Los Curazaos — ' + cab)
+      + '&dates=' + (b.start||'').replace(/-/g,'') + '/' + (b.end||'').replace(/-/g,'')
+      + '&details=' + encodeURIComponent('Cabaña: ' + cab + '\nOrden: ' + (b.orderId||''))
+      + '&location=' + encodeURIComponent('Casa Los Curazaos, Llanogrande, Rionegro, Antioquia');
+  }
+
+  var b = null;
+  try { b = JSON.parse(sessionStorage.getItem('clc_pending') || 'null'); } catch(_) {}
+  if (!b) return;
+
+  var cabin = CABINS[b.cabin] || (b.cabin || '');
+  var nights = (b.start && b.end)
+    ? Math.round((new Date(b.end) - new Date(b.start)) / 86400000) : 0;
+  var guests = (b.adults || 1) + ' adulto' + ((b.adults||1) !== 1 ? 's' : '');
+  if (b.children > 0) guests += ' · ' + b.children + ' niño' + (b.children > 1 ? 's' : '');
+  if (b.pets) guests += ' · mascota ✓';
+
+  function set(id, val) { var el = document.getElementById(id); if (el && val) el.textContent = val; }
+
+  set('v-cabin-name', cabin);
+  set('v-checkin',    b.start  ? fmtDate(b.start)  : '—');
+  set('v-checkout',   b.end    ? fmtDate(b.end)     : '—');
+  set('v-nights',     nights + (nights === 1 ? ' noche' : ' noches'));
+  set('v-guests',     guests);
+  set('v-name',       b.name  || '');
+  set('v-email',      b.email || '');
+  set('v-amount',     b.amount ? fmtCOP(b.amount) : '');
+  set('v-order',      b.orderId ? b.orderId : '');
+
+  document.getElementById('voucher-card').style.display = '';
+
+  var gcalBtn = document.getElementById('gcal-btn');
+  gcalBtn.href = gcalUrl(b);
+  document.getElementById('gcal-wrap').style.display = '';
+})();
+
+/* ── 2. Confirmar reserva vía confirm.php ───────────────────── */
+(function() {
+  var params  = new URLSearchParams(window.location.search);
+  var orderId = params.get('reference') || params.get('order_id') || params.get('orderId');
+  var status  = params.get('status') || params.get('payment_status') || 'approved';
+  if (!orderId) {
+    try { orderId = (JSON.parse(sessionStorage.getItem('clc_pending')||'{}')).orderId||null; } catch(_) {}
+  }
+  if (!orderId) return;
+  fetch('api/confirm.php', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ orderId: orderId, status: status })
+  })
+  .then(function(r){ return r.json(); })
+  .then(function(j){ if (j.ok) console.log('Reserva confirmada:', j.orderId, j.status); })
+  .catch(function(e){ console.warn('confirm.php error:', e); });
+  // No removemos clc_pending para que el voucher siga visible si el usuario recarga
+})();
+
+/* ── 3. Enlace "Gestionar mi reserva" + mostrar botones si hay orden ── */
+(function() {
+  try {
+    var b = JSON.parse(sessionStorage.getItem('clc_pending') || 'null');
+    if (b && b.orderId) {
+      var el = document.getElementById('mireserva-link');
+      if (el) el.href = 'mi-reserva.html?order=' + encodeURIComponent(b.orderId);
+      // Mostrar gcal-wrap aunque el voucher no cargue (si ya tiene orderId)
+      var gcalWrap = document.getElementById('gcal-wrap');
+      if (gcalWrap && gcalWrap.style.display === 'none') gcalWrap.style.display = '';
+    }
+  } catch(_) {}
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,12 @@
+{
+  "rewrites": [
+    {
+      "source": "/api/:path*",
+      "destination": "https://api.casaloscurazaos.com/api/:path*"
+    },
+    {
+      "source": "/admin/:path*",
+      "destination": "https://api.casaloscurazaos.com/admin/:path*"
+    }
+  ]
+}

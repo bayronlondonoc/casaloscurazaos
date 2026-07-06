@@ -1,0 +1,17 @@
+# Bloquea acceso a archivos internos del API
+<FilesMatch "^(_config|_lib)\.php$">
+  Require all denied
+</FilesMatch>
+
+# Bloquea acceso al folder de datos
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteRule ^data/.* - [F,L]
+</IfModule>
+
+# CORS para los endpoints públicos (availability, calendar, etc.)
+<IfModule mod_headers.c>
+  <FilesMatch "\.(php)$">
+    Header set Access-Control-Allow-Origin "*"
+  </FilesMatch>
+</IfModule>

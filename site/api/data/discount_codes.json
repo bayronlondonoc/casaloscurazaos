@@ -1,0 +1,45 @@
+{
+  "BAYRON10": {
+    "type": "pct",
+    "pct": 15,
+    "active": true,
+    "requiresRef": false,
+    "notes": "Bayron · permanente"
+  },
+  "CORPORATIVO": {
+    "type": "pct",
+    "pct": 25,
+    "active": true,
+    "until": "2026-12-31",
+    "requiresRef": true,
+    "refLabel": "Nombre de tu empresa",
+    "notes": "Corporativo · 25% · renueva dic"
+  },
+  "SOCIOS": {
+    "type": "pct",
+    "pct": 30,
+    "active": true,
+    "requiresRef": true,
+    "refLabel": "Empresa o asociación",
+    "notes": "Socios · 30% · permanente"
+  },
+  "SEGUNDA50": {
+    "type": "second_night",
+    "active": false,
+    "requiresRef": false,
+    "notes": "50% 2ª noche · activar según demanda"
+  },
+  "SEMANA2X1": {
+    "type": "weekday_2x1",
+    "active": false,
+    "requiresRef": false,
+    "notes": "2x1 semana · activar según demanda"
+  },
+  "TEST1000": {
+    "type": "pct",
+    "pct": 99,
+    "active": true,
+    "requiresRef": false,
+    "notes": "Solo pruebas internas"
+  }
+}

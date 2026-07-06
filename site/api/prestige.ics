@@ -1,0 +1,1 @@
+<?php $_GET['cabin'] = 'prestige'; require __DIR__ . '/calendar.php';

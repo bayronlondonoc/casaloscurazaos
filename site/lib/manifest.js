@@ -1,12 +1,14 @@
 /* Casa Los Curazaos — datos de marca y contenido editable.
-   Edita aquí tarifas, llaves Bold, URLs iCal Airbnb e Instagram cuando los tengas. */
+   Las reservas se gestionan íntegramente en Airbnb: aquí solo viven los
+   enlaces a cada anuncio, el contenido de las cabañas y los datos de contacto.
+   NUNCA publicar aquí la dirección exacta ni tarifas. */
 (function () {
   "use strict";
 
   window.__BRAND__ = {
     name: "Casa Los Curazaos",
     tagline: "Tres cabañas privadas para descansar en Llanogrande",
-    location: "Vereda Cabeceras · Llanogrande, Rionegro · Antioquia",
+    location: "Llanogrande · Rionegro · Antioquia",
     airport: "15 minutos del Aeropuerto JMC",
 
     /* === Contacto === */
@@ -24,26 +26,20 @@
       razon: "LEMONT GROUP S.A.S.",
       nit: "901463296-8",
       rnt: "201944",
-      direccion: "Vereda Cabeceras, Sector Gilberto Echeverri, Finca 35 — Rionegro, Antioquia"
+      /* Nunca publicar la dirección exacta: la ubicación se envía por WhatsApp
+         un día antes del check-in. Solo zona general. */
+      direccion: "Llanogrande — Rionegro, Antioquia"
     },
 
-    /* === Pagos (Bold) === */
-    /* Llaves pública+secreta y URL del checkout las define el servidor en
-       site/api/bold-checkout.php — aquí solo nombre amigable */
-    pago: {
-      proveedor: "Bold",
-      moneda: "COP",
-      redirectThanks: "gracias.html"
-    },
-
-    /* === Tarifas por noche en COP ===
-       Diferenciadas entre semana (lun–jue) y fin de semana (vie–dom).
-       El motor calcula automáticamente las noches de cada tipo. */
-    tarifas: {
-      luxe:           { semana: 340000, finde: 430000, temporada: 500000,  currency: "COP" },
-      comfort:        { semana: 340000, finde: 430000, temporada: 500000,  currency: "COP" },
-      prestige:       { semana: 340000, finde: 430000, temporada: 500000,  currency: "COP" },
-      "casa-completa":{ semana: 990000, finde: 1250000, temporada: 1500000, currency: "COP" }
+    /* === Reservas — anuncios de Airbnb ===
+       Toda reserva se hace en Airbnb (AirCover, pago protegido, check-in
+       autónomo). Estos son los enlaces cortos de cada anuncio; si cambian,
+       actualízalos aquí y en los CTA de las páginas de cabaña. */
+    airbnb: {
+      luxe:            "https://airbnb.com.co/h/loscurazaosluxury",
+      comfort:         "https://airbnb.com.co/h/loscurazaoscomfort",
+      prestige:        "https://airbnb.com.co/h/loscurazaosprestige",
+      "casa-completa": "https://airbnb.com.co/h/casaloscurazaos"
     },
 
     /* === Cabañas ===
@@ -198,12 +194,12 @@
 
     /* === Esquema operativo === */
     operacion: {
-      checkin: "Desde las 3:00 p. m.",
-      checkout: "Hasta las 12:00 m.",
+      checkin: "Desde las 4:00 p. m.",
+      checkout: "Hasta las 11:00 a. m.",
       mascotas: "Bienvenidas sin costo (traer su camita)",
       eventos: "No fiestas ni música alta · pequeños encuentros familiares con autorización previa",
       fumadores: "Espacio 100 % libre de humo",
-      pago: "Pago en línea seguro con Bold al confirmar la reserva",
+      pago: "Reserva y pago a través de Airbnb, con cobertura AirCover",
       aseo: "Limpieza adicional disponible bajo solicitud (COP $80.000 por cabaña)"
     },
 

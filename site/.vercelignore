@@ -1,5 +1,2 @@
-# El backend PHP vive en Hostinger — no se sirve desde Vercel.
-# Sin esto, Vercel sirve el código fuente .php como texto plano.
-api
-admin
+# Utilidades de desarrollo — no se despliegan.
 tools

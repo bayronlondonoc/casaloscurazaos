@@ -50,17 +50,6 @@
   AddType text/calendar .ics
 </IfModule>
 
-# ----- Calendarios iCal para Airbnb (.ics ejecutados como PHP) -----
-# Airbnb exige URLs que terminen en .ics.
-# Estos archivos .ics son PHP que internamente llaman a calendar.php.
-# Funciona con Apache mod_php, FastCGI y LiteSpeed (Hostinger).
-<IfModule mod_mime.c>
-  AddHandler application/x-httpd-php .ics
-</IfModule>
-<IfModule lsapi_module>
-  AddHandler lsapi_module .ics
-</IfModule>
-
 # ----- Compresión gzip -----
 <IfModule mod_deflate.c>
   AddOutputFilterByType DEFLATE text/html text/css text/javascript application/javascript application/json image/svg+xml font/woff font/woff2

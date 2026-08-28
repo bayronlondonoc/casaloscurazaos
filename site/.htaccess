@@ -3,6 +3,25 @@
 # Activa: caché correcta, MIME types, compresión, headers básicos
 # =====================================================================
 
+# ---------------------------------------------------------------------
+# Reservas: todo va por Airbnb. Estas reglas cierran el motor de reserva
+# directa por si quedan archivos viejos en el servidor, y mandan las
+# URLs muertas a su equivalente actual. Espejo de vercel.json.
+# ---------------------------------------------------------------------
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # Motor de reserva directa y panel admin: cortados de raíz.
+  RewriteRule ^api/          /reservar.html [R=301,L]
+  RewriteRule ^admin(/|$)    /              [R=301,L]
+
+  # Páginas del flujo de reserva directa que ya no existen.
+  RewriteRule ^gracias\.html$     /              [R=301,L]
+  RewriteRule ^mi-reserva\.html$  /reservar.html [R=301,L]
+  RewriteRule ^contrato\.html$    /politicas.html [R=301,L]
+  RewriteRule ^sarlaft\.html$     /politicas.html [R=301,L]
+</IfModule>
+
 # ----- Caché por tipo de archivo -----
 <IfModule mod_expires.c>
   ExpiresActive On

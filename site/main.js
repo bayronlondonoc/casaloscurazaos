@@ -77,8 +77,14 @@
       behavior
     });
 
+    /* En carga directa reposicionamos dos veces: una al montar y otra
+       en "load", porque las imágenes de arriba cambian la altura del
+       documento y dejarían el scroll desfasado. */
     if (location.pathname === "/cabanas") {
       requestAnimationFrame(() => goto("auto"));
+      if (document.readyState !== "complete") {
+        window.addEventListener("load", () => goto("auto"), { once: true });
+      }
     }
 
     document.addEventListener("click", e => {

@@ -16,10 +16,14 @@
   RewriteRule ^admin(/|$)    /              [R=301,L]
 
   # Páginas del flujo de reserva directa que ya no existen.
-  RewriteRule ^gracias\.html$     /              [R=301,L]
-  RewriteRule ^mi-reserva\.html$  /reservar.html [R=301,L]
-  RewriteRule ^contrato\.html$    /politicas.html [R=301,L]
-  RewriteRule ^sarlaft\.html$     /politicas.html [R=301,L]
+  RewriteRule ^gracias\.html$     /           [R=301,L]
+  RewriteRule ^mi-reserva\.html$  /reservar   [R=301,L]
+  RewriteRule ^contrato\.html$    /politicas  [R=301,L]
+  RewriteRule ^sarlaft\.html$     /politicas  [R=301,L]
+
+  # Experiencias: despublicada hasta que tenga contenido. 302, no 301,
+  # para poder volver a publicarla sin pelear con el caché del navegador.
+  RewriteRule ^experiencias(\.html)?$ / [R=302,L]
 </IfModule>
 
 # ----- Caché por tipo de archivo -----
@@ -81,14 +85,25 @@
 #   RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1 [R=301,L]
 # </IfModule>
 
-# ----- URLs limpias: "/cabana-luxe" sirve "/cabana-luxe.html" -----
-# Descomenta si quieres URLs sin .html (opcional)
-# <IfModule mod_rewrite.c>
-#   RewriteEngine On
-#   RewriteCond %{REQUEST_FILENAME} !-d
-#   RewriteCond %{REQUEST_FILENAME}.html -f
-#   RewriteRule ^(.+?)/?$ $1.html [L]
-# </IfModule>
+# ----- URLs limpias: "/beneficios" sirve "beneficios.html" -----
+# Espejo de "cleanUrls": true en vercel.json.
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # 1. Quien llegue con .html se va a la URL limpia (301, una sola vez).
+  RewriteCond %{THE_REQUEST} \s/+index\.html[\s?] [NC]
+  RewriteRule ^ / [R=301,L]
+  RewriteCond %{THE_REQUEST} \s/+([^\s?]+)\.html[\s?] [NC]
+  RewriteRule ^ /%1 [R=301,L]
+
+  # 2. /cabanas es la sección de cabañas de la home.
+  RewriteRule ^cabanas/?$ index.html [L]
+
+  # 3. Internamente, /beneficios sirve beneficios.html.
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteCond %{REQUEST_FILENAME}.html -f
+  RewriteRule ^(.+?)/?$ $1.html [L]
+</IfModule>
 
 # ----- Página de error básica (404) -----
 # ErrorDocument 404 /index.html

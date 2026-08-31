@@ -53,10 +53,34 @@
       });
     }
 
-    const path = location.pathname.split("/").pop() || "index.html";
+    /* URLs limpias: /beneficios en vez de beneficios.html. Normalizamos
+       ambos lados para que el link activo siga funcionando. */
+    const slug = u => (u || "").split("#")[0].split("/").pop().replace(/\.html$/, "") || "inicio";
+    const path = slug(location.pathname);
     $$(".nav-link, .nav-mobile-link").forEach(a => {
-      const href = (a.getAttribute("href") || "").split("/").pop();
-      if (href === path) a.classList.add("is-active");
+      if (slug(a.getAttribute("href")) === path) a.classList.add("is-active");
+    });
+  }
+
+  /* ---------- 2b. /cabanas ---------------------------------- */
+  /* La sección de cabañas vive en la home, pero se sirve y se muestra
+     como /cabanas para no exponer index.html#cabanas en la barra. */
+  function initCabanasRoute() {
+    const target = document.getElementById("cabanas");
+    if (!target) return;
+
+    const goto = () => target.scrollIntoView({ behavior: "smooth", block: "start" });
+
+    if (location.pathname === "/cabanas") {
+      requestAnimationFrame(() => target.scrollIntoView({ block: "start" }));
+    }
+
+    document.addEventListener("click", e => {
+      const a = e.target.closest('a[href="/cabanas"]');
+      if (!a) return;
+      e.preventDefault();
+      history.replaceState(null, "", "/cabanas");
+      goto();
     });
   }
 
@@ -305,6 +329,7 @@
   function boot() {
     safe(initSplash,       "initSplash");
     safe(initNav,          "initNav");
+    safe(initCabanasRoute, "initCabanasRoute");
     safe(initReveals,      "initReveals");
     safe(initSmoothAnchors,"initSmoothAnchors");
     safe(initLightbox,     "initLightbox");

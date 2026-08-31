@@ -11,7 +11,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..500&family=Inter:wght@300;400;450;500;600&family=JetBrains+Mono:wght@400;500&display=swap" />
 
-<link rel="stylesheet" href="styles.css?v=20260814a" />
+<link rel="stylesheet" href="styles.css?v=20260831a" />
 </head>
 <body>
 
@@ -26,21 +26,21 @@
 
 <header class="nav" data-nav>
   <div class="container nav-inner">
-    <a class="nav-brand" href="index.html">
+    <a class="nav-brand" href="/">
       <span class="nav-brand-mark">CLC</span>
       <span>Casa <em>Los Curazaos</em></span>
     </a>
     <nav aria-label="Principal">
       <ul class="nav-links">
-        <li><a class="nav-link" href="index.html">Inicio</a></li>
-        <li><a class="nav-link" href="index.html#cabanas">Cabañas</a></li>
-        <li><a class="nav-link" href="experiencias.html">Experiencias</a></li>
-        <li><a class="nav-link" href="beneficios.html">Beneficios</a></li>
-        <li><a class="nav-link" href="contacto.html">Contacto</a></li>
+        <li><a class="nav-link" href="/">Inicio</a></li>
+        <li><a class="nav-link" href="/cabanas">Cabañas</a></li>
+        <li><a class="nav-link" href="/experiencia">El lugar</a></li>
+        <li><a class="nav-link" href="/beneficios">Beneficios</a></li>
+        <li><a class="nav-link" href="/contacto">Contacto</a></li>
         <li><a class="nav-icon-link" href="https://instagram.com/casaloscurazaos" target="_blank" rel="noopener" aria-label="Instagram @casaloscurazaos"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a></li>
       </ul>
     </nav>
-    <a class="nav-cta" href="reservar.html">Reservar</a>
+    <a class="nav-cta" href="/reservar">Reservar</a>
     <button class="nav-toggle" aria-label="Abrir menú" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
@@ -49,11 +49,11 @@
 
 <aside class="nav-mobile" aria-hidden="true">
   <ul class="nav-mobile-links">
-    <li><a class="nav-mobile-link" href="index.html">Inicio</a></li>
-    <li><a class="nav-mobile-link" href="index.html#cabanas">Cabañas</a></li>
-    <li><a class="nav-mobile-link" href="experiencias.html">Experiencias</a></li>
-    <li><a class="nav-mobile-link" href="beneficios.html">Beneficios</a></li>
-    <li><a class="nav-mobile-link" href="contacto.html">Contacto</a></li>
+    <li><a class="nav-mobile-link" href="/">Inicio</a></li>
+    <li><a class="nav-mobile-link" href="/cabanas">Cabañas</a></li>
+    <li><a class="nav-mobile-link" href="/experiencia">El lugar</a></li>
+    <li><a class="nav-mobile-link" href="/beneficios">Beneficios</a></li>
+    <li><a class="nav-mobile-link" href="/contacto">Contacto</a></li>
       <li><a class="nav-mobile-link" href="https://instagram.com/casaloscurazaos" target="_blank" rel="noopener">📷 Instagram</a></li>
   </ul>
   <div class="nav-mobile-foot">
@@ -133,8 +133,58 @@
   </div>
 </section>
 
-<!-- Restaurantes Recomendados -->
+<!-- La Finestra -->
 <section class="section section-tonal">
+  <div class="container">
+    <div class="section-head">
+      <div data-reveal>
+        <p class="eyebrow section-eyebrow"><span class="dot"></span>Café · Brunch · Coworking</p>
+        <h2 class="h-section">La Finestra <em>15% descuento.</em></h2>
+      </div>
+      <p class="lede" data-reveal data-delay="1">
+        La ventana a un mundo de sabores. Desayunos, brunch, tortas, galletas artesanales y opciones saludables para disfrutar a cualquier hora del día.
+      </p>
+    </div>
+
+    <div class="entorno-grid">
+      <div class="entorno-card" data-reveal>
+        <p class="entorno-time">🥐</p>
+        <p class="entorno-place"><strong>Desayunos y brunch</strong> con carta propia y producto fresco</p>
+      </div>
+      <div class="entorno-card" data-reveal data-delay="1">
+        <p class="entorno-time">🍰</p>
+        <p class="entorno-place"><strong>Tortas y galletas artesanales</strong> horneadas en casa</p>
+      </div>
+      <div class="entorno-card" data-reveal data-delay="2">
+        <p class="entorno-time">🥗</p>
+        <p class="entorno-place"><strong>Opciones saludables</strong> a cualquier hora del día</p>
+      </div>
+      <div class="entorno-card" data-reveal data-delay="3">
+        <p class="entorno-time">15%</p>
+        <p class="entorno-place"><strong>Descuento exclusivo</strong> + tinto o postre pequeño de cortesía</p>
+      </div>
+    </div>
+
+    <div class="il-giardino-gallery gal-portrait" data-lightbox="finestra" data-reveal style="margin-top: 4rem;">
+      <figure class="il-gal-item"><img src="assets/img/la-finestra/finestra-1.jpg" alt="Café frío, croissant y galletas en La Finestra" loading="lazy" /></figure>
+      <figure class="il-gal-item"><img src="assets/img/la-finestra/finestra-2.jpg" alt="Latte helado y galleta artesanal de La Finestra" loading="lazy" /></figure>
+      <figure class="il-gal-item"><img src="assets/img/la-finestra/finestra-3.jpg" alt="Waffle con queso y arequipe de La Finestra" loading="lazy" /></figure>
+    </div>
+
+    <div class="mt-8 text-center" data-reveal>
+      <p style="font-size: 1rem; color: var(--ink-soft); margin-bottom: 1.5rem;">
+        📞 <strong>Café, brunch y coworking en Llanogrande</strong> ·
+        <a href="https://www.instagram.com/lafinestrallanogrande/" target="_blank" rel="noopener" style="color: var(--accent); text-decoration: underline;">@lafinestrallanogrande</a>
+      </p>
+      <p style="font-size: 0.9rem; color: var(--ink-soft); font-style: italic;">
+        Al visitar, menciona que estás alojado con nosotros en Casa Los Curazaos para recibir tu 15% de descuento y tu cortesía.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- Restaurantes Recomendados -->
+<section class="section">
   <div class="container">
     <div class="section-head">
       <div data-reveal>
@@ -171,7 +221,7 @@
       <p style="color: rgba(251,247,239,0.85); margin-bottom: 2rem; font-size: 1.1rem;">
         Contáctanos y te orientaremos sobre cómo aprovechar al máximo tu experiencia.
       </p>
-      <a class="btn btn-accent btn-large" href="contacto.html">Contacto</a>
+      <a class="btn btn-accent btn-large" href="/contacto">Contacto</a>
     </div>
   </div>
 </section>
@@ -188,25 +238,25 @@
       <div>
         <p class="footer-title">Cabañas</p>
         <ul class="footer-list">
-          <li><a href="cabana-luxe.html">Luxe</a></li>
-          <li><a href="cabana-comfort.html">Comfort</a></li>
-          <li><a href="cabana-prestige.html">Prestige</a></li>
-          <li><a href="casa-completa.html">Deluxe House</a></li>
+          <li><a href="/cabana-luxe">Luxe</a></li>
+          <li><a href="/cabana-comfort">Comfort</a></li>
+          <li><a href="/cabana-prestige">Prestige</a></li>
+          <li><a href="/casa-completa">Deluxe House</a></li>
         </ul>
       </div>
       <div>
         <p class="footer-title">Explorar</p>
         <ul class="footer-list">
-          <li><a href="experiencias.html">Experiencias</a></li>
-          <li><a href="beneficios.html">Beneficios</a></li>
-          <li><a href="reservar.html">Reservar</a></li>
-          <li><a href="contacto.html">Contacto</a></li>
+          <li><a href="/experiencia">El lugar</a></li>
+          <li><a href="/beneficios">Beneficios</a></li>
+          <li><a href="/reservar">Reservar</a></li>
+          <li><a href="/contacto">Contacto</a></li>
         </ul>
       </div>
       <div>
         <p class="footer-title">Legal</p>
         <ul class="footer-list">
-          <li><a href="politicas.html">Políticas</a></li>
+          <li><a href="/politicas">Políticas</a></li>
 
         </ul>
       </div>
@@ -223,7 +273,7 @@
 
 <script defer src="lib/gsap.min.js"></script>
 <script defer src="lib/ScrollTrigger.min.js"></script>
-<script defer src="lib/manifest.js?v=20260814a"></script>
-<script defer src="main.js?v=20260814a"></script>
+<script defer src="lib/manifest.js?v=20260831a"></script>
+<script defer src="main.js?v=20260831a"></script>
 </body>
 </html>

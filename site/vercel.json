@@ -1,12 +1,19 @@
 {
   "trailingSlash": false,
+  "cleanUrls": true,
   "redirects": [
+    { "source": "/experiencias", "destination": "/", "permanent": false },
+    { "source": "/experiencias.html", "destination": "/", "permanent": false },
+
     { "source": "/gracias.html", "destination": "/", "permanent": true },
-    { "source": "/mi-reserva.html", "destination": "/reservar.html", "permanent": true },
+    { "source": "/mi-reserva.html", "destination": "/reservar", "permanent": true },
     { "source": "/admin", "destination": "/", "permanent": true },
     { "source": "/admin/:path*", "destination": "/", "permanent": true },
-    { "source": "/api/:path*", "destination": "/reservar.html", "permanent": true },
-    { "source": "/contrato.html", "destination": "/politicas.html", "permanent": true },
-    { "source": "/sarlaft.html", "destination": "/politicas.html", "permanent": true }
+    { "source": "/api/:path*", "destination": "/reservar", "permanent": true },
+    { "source": "/contrato.html", "destination": "/politicas", "permanent": true },
+    { "source": "/sarlaft.html", "destination": "/politicas", "permanent": true }
+  ],
+  "rewrites": [
+    { "source": "/cabanas", "destination": "/index.html" }
   ]
 }

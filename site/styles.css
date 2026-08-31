@@ -1560,3 +1560,11 @@ body.is-menu-open .nav-mobile {
 .hero-rating-score { font-size: .95rem; font-weight: 700; }
 .hero-rating-label { font-size: .78rem; opacity: .85; }
 
+
+/* -- Galería vertical (fotos de Instagram en formato retrato) ---- */
+.il-giardino-gallery.gal-portrait {
+  grid-template-columns: repeat(3, 1fr);
+  max-width: 720px;
+  margin-inline: auto;
+}
+.gal-portrait .il-gal-item { aspect-ratio: 3 / 4; }

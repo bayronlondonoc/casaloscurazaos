@@ -14,6 +14,6 @@
     { "source": "/sarlaft.html", "destination": "/politicas", "permanent": true }
   ],
   "rewrites": [
-    { "source": "/cabanas", "destination": "/index.html" }
+    { "source": "/cabanas", "destination": "/" }
   ]
 }

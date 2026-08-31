@@ -69,10 +69,16 @@
     const target = document.getElementById("cabanas");
     if (!target) return;
 
-    const goto = () => target.scrollIntoView({ behavior: "smooth", block: "start" });
+    /* Mismo offset que los anclas normales: el nav es fijo y taparía
+       el título de la sección. */
+    const navOffset = 90;
+    const goto = behavior => window.scrollTo({
+      top: target.getBoundingClientRect().top + scrollY - navOffset,
+      behavior
+    });
 
     if (location.pathname === "/cabanas") {
-      requestAnimationFrame(() => target.scrollIntoView({ block: "start" }));
+      requestAnimationFrame(() => goto("auto"));
     }
 
     document.addEventListener("click", e => {
@@ -80,7 +86,7 @@
       if (!a) return;
       e.preventDefault();
       history.replaceState(null, "", "/cabanas");
-      goto();
+      goto(reduced ? "auto" : "smooth");
     });
   }
 

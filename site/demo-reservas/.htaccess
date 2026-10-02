@@ -1,0 +1,5 @@
+# Demo del motor de reservas: accesible solo por enlace directo.
+# Que ningún buscador la indexe (espejo del header en vercel.json).
+<IfModule mod_headers.c>
+  Header set X-Robots-Tag "noindex, nofollow"
+</IfModule>

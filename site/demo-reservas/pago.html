@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>Pago seguro — Casa Los Curazaos</title>
+<meta name="robots" content="noindex, nofollow" />
+<meta name="theme-color" content="#f3ece0" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..500&family=Inter:wght@300;400;450;500;600&family=JetBrains+Mono:wght@400;500&display=swap" />
+
+<link rel="stylesheet" href="/styles.css?v=20260831a" />
+<link rel="stylesheet" href="/demo-reservas/demo.css?v=20261002a" />
+</head>
+<body data-demo="pago" class="pay-body">
+
+<header class="pay-top">
+  <a class="nav-brand" href="/demo-reservas">
+    <span class="nav-brand-mark">CLC</span>
+    <span>Casa <em>Los Curazaos</em></span>
+  </a>
+  <span class="pay-top-secure">🔒 Pago seguro</span>
+</header>
+
+<main id="main" class="pay-main">
+  <div class="pay-shell" data-pay>
+
+    <!-- Resumen del pedido -->
+    <aside class="pay-order">
+      <p class="pay-order-eyebrow">Estás pagando a</p>
+      <p class="pay-order-merchant">Casa Los Curazaos</p>
+      <p class="pay-order-legal">LEMONT GROUP S.A.S. · NIT 901463296-8</p>
+
+      <div class="pay-order-box">
+        <p class="pay-order-cabin" data-pay-cabin></p>
+        <p class="pay-order-dates" data-pay-dates></p>
+        <p class="pay-order-nights" data-pay-nights></p>
+        <div class="pay-lines" data-pay-lines></div>
+        <div class="pay-total"><span>Total</span><span data-pay-amount></span></div>
+      </div>
+
+      <p class="pay-order-ref">Orden <span data-pay-order></span></p>
+      <p class="pay-hold">Tus fechas están apartadas por <strong data-pay-timer>2:00:00</strong></p>
+    </aside>
+
+    <!-- Pasarela -->
+    <section class="pay-box" aria-label="Método de pago">
+      <div class="pay-box-head">
+        <p class="pay-box-title">Elige cómo pagar</p>
+        <span class="pay-demo-tag">Simulación</span>
+      </div>
+
+      <div class="pay-tabs" role="tablist">
+        <button type="button" class="pay-tab is-active" role="tab" aria-selected="true" data-pay-tab="card">💳 Tarjeta</button>
+        <button type="button" class="pay-tab" role="tab" aria-selected="false" data-pay-tab="pse">🏦 PSE</button>
+        <button type="button" class="pay-tab" role="tab" aria-selected="false" data-pay-tab="nequi">📱 Nequi</button>
+      </div>
+
+      <!-- Tarjeta: solo datos de prueba, sin campos editables -->
+      <div class="pay-panel" data-pay-panel="card">
+        <div class="pay-card">
+          <span class="pay-card-chip"></span>
+          <span class="pay-card-number">4242 4242 4242 4242</span>
+          <span class="pay-card-row">
+            <span><small>Titular</small><span data-pay-holder>TITULAR</span></span>
+            <span><small>Vence</small>12/30</span>
+          </span>
+        </div>
+        <div class="pay-fake-grid">
+          <div class="pay-fake"><small>Número de tarjeta</small>4242 4242 4242 4242</div>
+          <div class="pay-fake"><small>Vencimiento</small>12/30</div>
+          <div class="pay-fake"><small>CVV</small>•••</div>
+          <div class="pay-fake"><small>Cuotas</small>1</div>
+        </div>
+      </div>
+
+      <div class="pay-panel" data-pay-panel="pse" hidden>
+        <div class="pay-fake-grid">
+          <div class="pay-fake pay-fake-wide"><small>Banco</small>Banco de pruebas</div>
+          <div class="pay-fake"><small>Tipo de persona</small>Natural</div>
+          <div class="pay-fake"><small>Email</small><span data-pay-email></span></div>
+        </div>
+        <p class="pay-panel-note">En producción, PSE abre el portal del banco y regresa aquí al terminar.</p>
+      </div>
+
+      <div class="pay-panel" data-pay-panel="nequi" hidden>
+        <div class="pay-fake-grid">
+          <div class="pay-fake pay-fake-wide"><small>Celular Nequi</small><span data-pay-phone></span></div>
+        </div>
+        <p class="pay-panel-note">En producción, el huésped aprueba la notificación en su app de Nequi.</p>
+      </div>
+
+      <button type="button" class="btn btn-accent pay-submit" data-pay-submit>Pagar <span data-pay-amount></span></button>
+
+      <div class="pay-alt">
+        <button type="button" class="pay-link" data-pay-reject>Simular pago rechazado</button>
+        <span aria-hidden="true">·</span>
+        <a class="pay-link" href="/demo-reservas" data-pay-cancel>Cancelar y volver</a>
+      </div>
+
+      <p class="pay-disclaimer">
+        Esto es una demostración: no se pide ni se cobra ninguna tarjeta real. En producción, este paso abre la pasarela del hotel (Bold, Wompi, Mercado Pago u otra) y confirma la reserva automáticamente cuando el pago se aprueba.
+      </p>
+    </section>
+  </div>
+
+  <!-- Estado del pago -->
+  <div class="pay-overlay" data-pay-overlay hidden>
+    <div class="pay-overlay-card" role="status" aria-live="polite">
+      <span class="pay-overlay-icon" data-pay-ov-icon></span>
+      <p class="pay-overlay-title" data-pay-ov-title></p>
+      <p class="pay-overlay-text" data-pay-ov-text></p>
+      <div class="pay-overlay-actions" data-pay-ov-actions></div>
+    </div>
+  </div>
+</main>
+
+<script defer src="/lib/manifest.js?v=20260831a"></script>
+<script defer src="/demo-reservas/demo.js?v=20261002a"></script>
+</body>
+</html>

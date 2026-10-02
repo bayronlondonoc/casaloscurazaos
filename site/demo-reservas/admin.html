@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>Panel del hotel — Casa Los Curazaos</title>
+<meta name="robots" content="noindex, nofollow" />
+<meta name="theme-color" content="#1f1b16" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..500&family=Inter:wght@300;400;450;500;600&family=JetBrains+Mono:wght@400;500&display=swap" />
+
+<link rel="stylesheet" href="/styles.css?v=20260831a" />
+<link rel="stylesheet" href="/demo-reservas/demo.css?v=20261002a" />
+</head>
+<body data-demo="admin" class="adm-body">
+
+<header class="adm-top">
+  <div class="adm-top-inner">
+    <a class="nav-brand" href="/demo-reservas">
+      <span class="nav-brand-mark">CLC</span>
+      <span>Casa <em>Los Curazaos</em></span>
+    </a>
+    <span class="adm-top-title">Panel del hotel</span>
+    <a class="adm-top-link" href="/demo-reservas" target="_blank" rel="noopener">Abrir el motor de reservas ↗</a>
+  </div>
+</header>
+
+<main id="main" class="adm-main" data-admin>
+
+  <p class="adm-demo-note">
+    <strong>Acceso de demostración.</strong> En producción este panel está protegido con usuario y contraseña. Aquí ves en tiempo real las reservas hechas en el motor desde este mismo navegador.
+  </p>
+
+  <div class="adm-kpis" data-kpis></div>
+
+  <nav class="adm-tabs" aria-label="Secciones del panel">
+    <a href="?tab=calendario" class="adm-tab" data-adm-tab="calendario">📅 Calendario y bloqueos</a>
+    <a href="?tab=reservas" class="adm-tab" data-adm-tab="reservas">📋 Reservas</a>
+    <a href="?tab=descuentos" class="adm-tab" data-adm-tab="descuentos">🏷️ Descuentos</a>
+  </nav>
+
+  <!-- Calendario y bloqueos -->
+  <section class="adm-panel" data-adm-panel="calendario">
+    <div class="adm-card">
+      <div class="adm-card-head">
+        <h2>Ocupación</h2>
+        <div class="adm-month-nav">
+          <button type="button" class="booking-cal-btn" data-adm-prev aria-label="Mes anterior">‹</button>
+          <span class="adm-month" data-adm-month></span>
+          <button type="button" class="booking-cal-btn" data-adm-next aria-label="Mes siguiente">›</button>
+        </div>
+      </div>
+      <div class="adm-cal" data-adm-cal></div>
+      <div class="adm-legend">
+        <span><i class="is-web"></i> Reserva web pagada</span>
+        <span><i class="is-pending"></i> Pendiente de pago (2 h)</span>
+        <span><i class="is-airbnb"></i> Airbnb (sincronizado por iCal)</span>
+        <span><i class="is-bloqueo"></i> Bloqueo manual</span>
+        <span><i class="is-free"></i> Libre</span>
+      </div>
+      <p class="adm-hint">Deluxe House ocupa las tres cabañas, y cualquier cabaña ocupada bloquea Deluxe House. En color, las noches con tarifa de fin de semana o festivo.</p>
+    </div>
+
+    <div class="adm-grid-2">
+      <form class="adm-card" data-blk-form>
+        <h2>Bloquear fechas</h2>
+        <p class="adm-hint">Mantenimiento, uso propio o reservas tomadas por otro canal. Las fechas dejan de estar disponibles en el motor al instante.</p>
+        <div class="booking-field mt-2">
+          <label for="blk-cabin">Cabaña</label>
+          <select id="blk-cabin" name="cabin"></select>
+        </div>
+        <div class="booking-fields-row mt-2">
+          <div class="booking-field">
+            <label for="blk-start">Desde</label>
+            <input type="date" id="blk-start" name="start" required />
+          </div>
+          <div class="booking-field">
+            <label for="blk-end">Hasta (día de salida)</label>
+            <input type="date" id="blk-end" name="end" required />
+          </div>
+        </div>
+        <div class="booking-field mt-2">
+          <label for="blk-note">Nota</label>
+          <input type="text" id="blk-note" name="note" placeholder="Ej. mantenimiento del jacuzzi" />
+        </div>
+        <button type="submit" class="btn btn-primary mt-3">Bloquear fechas</button>
+        <p class="adm-msg" data-blk-msg></p>
+      </form>
+
+      <div class="adm-card">
+        <h2>Bloqueos manuales</h2>
+        <div data-blk-list></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Reservas -->
+  <section class="adm-panel" data-adm-panel="reservas" hidden>
+    <div class="adm-card">
+      <div class="adm-card-head">
+        <h2>Reservas web</h2>
+        <a class="btn btn-ghost adm-small-btn" href="/demo-reservas" target="_blank" rel="noopener">+ Reserva de prueba</a>
+      </div>
+      <div data-res-list></div>
+    </div>
+  </section>
+
+  <!-- Descuentos -->
+  <section class="adm-panel" data-adm-panel="descuentos" hidden>
+    <div class="adm-grid-2 adm-grid-codes">
+      <form class="adm-card" data-code-form>
+        <h2>Nuevo código</h2>
+        <div class="booking-field mt-2">
+          <label for="code-code">Código</label>
+          <input type="text" id="code-code" name="code" placeholder="VERANO20" style="text-transform:uppercase; font-family:var(--mono);" required />
+        </div>
+        <div class="booking-fields-row mt-2">
+          <div class="booking-field">
+            <label for="code-type">Tipo</label>
+            <select id="code-type" name="type">
+              <option value="pct">Porcentaje</option>
+              <option value="second_night">50% en la 2.ª noche</option>
+              <option value="weekday_2x1">2x1 entre semana</option>
+            </select>
+          </div>
+          <div class="booking-field">
+            <label for="code-pct">Descuento (%)</label>
+            <input type="number" id="code-pct" name="pct" min="1" max="90" step="1" placeholder="20" />
+          </div>
+        </div>
+        <div class="booking-fields-row mt-2">
+          <div class="booking-field">
+            <label for="code-from">Válido desde (opcional)</label>
+            <input type="date" id="code-from" name="from" />
+          </div>
+          <div class="booking-field">
+            <label for="code-until">Válido hasta (opcional)</label>
+            <input type="date" id="code-until" name="until" />
+          </div>
+        </div>
+        <label class="adm-check mt-2"><input type="checkbox" name="requiresRef" /> Pedir nombre de empresa al usarlo</label>
+        <div class="booking-field mt-2" style="display:none;">
+          <label for="code-ref">Texto del campo</label>
+          <input type="text" id="code-ref" name="refLabel" placeholder="Nombre de tu empresa" />
+        </div>
+        <div class="booking-field mt-2">
+          <label for="code-notes">Notas internas</label>
+          <input type="text" id="code-notes" name="notes" placeholder="Campaña, aliado, influencer…" />
+        </div>
+        <button type="submit" class="btn btn-primary mt-3">Crear código</button>
+        <p class="adm-msg" data-code-msg></p>
+      </form>
+      <div class="adm-card">
+        <h2>Códigos</h2>
+        <p class="adm-hint">Los cambios aplican de inmediato en el paso 5 del motor. Si una estadía también califica para descuento por noches, se aplica el mayor.</p>
+        <div data-codes-list></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="adm-foot">
+    <span>Las tarifas, festivos de Colombia y temporada alta (20 dic – 6 ene) se calculan solos en cada reserva.</span>
+    <button type="button" class="adm-btn adm-btn-danger" data-adm-reset>Restablecer demo</button>
+  </div>
+</main>
+
+<script defer src="/lib/manifest.js?v=20260831a"></script>
+<script defer src="/demo-reservas/demo.js?v=20261002a"></script>
+</body>
+</html>

@@ -1,0 +1,320 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>Reservar — Casa Los Curazaos</title>
+<meta name="description" content="Reserva tu cabaña en Casa Los Curazaos: calendario en vivo, tarifas por noche, pago seguro y confirmación inmediata." />
+<meta name="robots" content="noindex, nofollow" />
+<meta name="theme-color" content="#f3ece0" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..500&family=Inter:wght@300;400;450;500;600&family=JetBrains+Mono:wght@400;500&display=swap" />
+
+<link rel="stylesheet" href="/styles.css?v=20260831a" />
+<link rel="stylesheet" href="/demo-reservas/demo.css?v=20261002a" />
+</head>
+<body data-demo="reservar">
+
+<a class="skip-link" href="#main">Saltar al contenido</a>
+
+<div class="splash" data-splash aria-hidden="true">
+  <div class="splash-inner">
+    <span class="splash-mark">Reservar</span>
+    <span class="splash-line">Casa Los Curazaos · pago seguro</span>
+  </div>
+</div>
+
+<header class="nav" data-nav>
+  <div class="container nav-inner">
+    <a class="nav-brand" href="/demo-reservas">
+      <span class="nav-brand-mark">CLC</span>
+      <span>Casa <em>Los Curazaos</em></span>
+    </a>
+    <nav aria-label="Principal">
+      <ul class="nav-links">
+        <li><a class="nav-link" href="/">Inicio</a></li>
+        <li><a class="nav-link" href="/cabanas">Cabañas</a></li>
+        <li><a class="nav-link" href="/experiencia">El lugar</a></li>
+        <li><a class="nav-link" href="/demo-reservas/mi-reserva">Mi Reserva</a></li>
+        <li><a class="nav-link" href="/contacto">Contacto</a></li>
+      </ul>
+    </nav>
+    <a class="nav-cta" href="#booking">Ver disponibilidad</a>
+    <button class="nav-toggle" aria-label="Abrir menú" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<aside class="nav-mobile" aria-hidden="true">
+  <ul class="nav-mobile-links">
+    <li><a class="nav-mobile-link" href="/">Inicio</a></li>
+    <li><a class="nav-mobile-link" href="/cabanas">Cabañas</a></li>
+    <li><a class="nav-mobile-link" href="/experiencia">El lugar</a></li>
+    <li><a class="nav-mobile-link" href="/demo-reservas/mi-reserva">Mi Reserva</a></li>
+    <li><a class="nav-mobile-link" href="/contacto">Contacto</a></li>
+  </ul>
+  <div class="nav-mobile-foot">
+    <span>Llanogrande · Rionegro · Colombia 🇨🇴</span>
+    <span>Reserva directa · pago seguro</span>
+  </div>
+</aside>
+
+<main id="main">
+
+<section class="hero-page">
+  <div class="container">
+    <div data-reveal>
+      <p class="eyebrow hero-page-eyebrow"><span class="dot"></span>Reserva en línea</p>
+      <h1 class="hero-page-title">Cinco pasos, <em>pago seguro al instante.</em></h1>
+      <p class="hero-page-sub">
+        Elige cabaña, revisa el calendario en vivo (sincronizado con Airbnb) y paga en línea. Tu reserva queda confirmada en cuanto el pago se aprueba.
+      </p>
+      <p class="hero-page-sub" style="margin-top:1rem; font-size:.95rem;">
+        ¿Ya tienes una reserva?
+        <a href="/demo-reservas/mi-reserva" style="color:var(--accent); text-decoration:underline; font-weight:500;">Consúltala o cambia tu fecha aquí →</a>
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="booking">
+  <div class="container">
+    <p class="booking-notice" data-booking-notice hidden></p>
+    <form class="booking" data-booking novalidate>
+
+      <!-- 01 · Cabaña -->
+      <div class="booking-step" data-reveal>
+        <div class="booking-step-label">
+          <span class="booking-step-num">01</span>
+          <span class="booking-step-title">Elige la cabaña</span>
+        </div>
+        <div class="booking-cabin-options" data-booking-cabins></div>
+      </div>
+
+      <!-- 02 · Fechas -->
+      <div class="booking-step" data-reveal>
+        <div class="booking-step-label">
+          <span class="booking-step-num">02</span>
+          <span class="booking-step-title">Elige fechas (llegada y salida)</span>
+        </div>
+        <p class="booking-calendar-hint" hidden></p>
+        <div class="booking-calendar-shell" data-booking-calendar></div>
+        <div class="booking-legend">
+          <span><i></i> Tu selección</span>
+          <span><i class="range"></i> Rango elegido</span>
+          <span><i class="busy"></i> Ocupado</span>
+          <span style="color: var(--accent);">En color: tarifa de fin de semana o festivo</span>
+        </div>
+      </div>
+
+      <!-- 03 · Huéspedes -->
+      <div class="booking-step" data-reveal>
+        <div class="booking-step-label">
+          <span class="booking-step-num">03</span>
+          <span class="booking-step-title">Quiénes vienen</span>
+        </div>
+        <div class="booking-guests">
+          <div class="booking-field">
+            <label>Adultos</label>
+            <div class="booking-counter" data-counter="adults">
+              <button type="button" data-counter-dec aria-label="Quitar adulto">−</button>
+              <span class="val">2</span>
+              <button type="button" data-counter-inc aria-label="Añadir adulto">+</button>
+            </div>
+          </div>
+          <div class="booking-field">
+            <label>Niños</label>
+            <div class="booking-counter" data-counter="children">
+              <button type="button" data-counter-dec aria-label="Quitar niño">−</button>
+              <span class="val">0</span>
+              <button type="button" data-counter-inc aria-label="Añadir niño">+</button>
+            </div>
+          </div>
+          <div class="booking-field" style="grid-auto-flow:column; align-items:center; gap:.6rem;">
+            <input type="checkbox" id="pets" data-pets style="width:18px; height:18px; accent-color: var(--accent);" />
+            <label for="pets" style="text-transform:none; letter-spacing:0; font-size:.95rem; color:var(--ink-soft); font-weight:400;">Voy con mi mascota</label>
+          </div>
+        </div>
+      </div>
+
+      <!-- 04 · Datos -->
+      <div class="booking-step" data-reveal>
+        <div class="booking-step-label">
+          <span class="booking-step-num">04</span>
+          <span class="booking-step-title">Datos del titular de la reserva</span>
+        </div>
+        <p style="font-size:.82rem; color:var(--ink-mute); margin-bottom:1.25rem; line-height:1.5;">
+          Requerido por normativa de vivienda turística (RNT 201944). Los datos se tratan conforme a nuestra <a href="/privacidad" style="color:var(--accent); text-decoration:underline;">política de privacidad</a>.
+        </p>
+        <div class="booking-fields-row">
+          <div class="booking-field">
+            <label for="name">Nombre completo *</label>
+            <input type="text" id="name" data-field="name" placeholder="Cómo te llamas" autocomplete="name" />
+          </div>
+          <div class="booking-field">
+            <label for="cedula">Número de documento *</label>
+            <input type="text" id="cedula" data-field="cedula" placeholder="Cédula o pasaporte" autocomplete="off" />
+          </div>
+        </div>
+        <div class="booking-fields-row mt-3">
+          <div class="booking-field">
+            <label for="phone">Teléfono (WhatsApp) *</label>
+            <input type="tel" id="phone" data-field="phone" placeholder="+57 …" autocomplete="tel" />
+          </div>
+          <div class="booking-field">
+            <label for="email">Email *</label>
+            <input type="email" id="email" data-field="email" placeholder="tu@correo.com" autocomplete="email" />
+          </div>
+        </div>
+        <div class="booking-field mt-3">
+          <label for="msg">¿Algo que debamos saber? (opcional)</label>
+          <input type="text" id="msg" data-field="message" placeholder="Llegada tarde, ocasión especial, etc." />
+        </div>
+
+        <div id="extra-guests-wrap" style="display:none">
+          <div style="border-top:1px solid var(--line); margin-top:1.5rem; padding-top:1.25rem;">
+            <p class="eyebrow" style="margin-bottom:1rem;"><span class="dot"></span>Datos de los acompañantes</p>
+            <div id="extra-guests-list"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 05 · Resumen y pago -->
+      <div class="booking-step" data-reveal>
+        <div class="booking-step-label">
+          <span class="booking-step-num">05</span>
+          <span class="booking-step-title">Resumen y pago</span>
+        </div>
+        <div class="booking-summary" data-booking-summary></div>
+
+        <div class="booking-fields-row mt-4" style="align-items:end;">
+          <div class="booking-field">
+            <label for="discount">Código de descuento (opcional)</label>
+            <input type="text" id="discount" data-field="discount" autocomplete="off" style="text-transform:uppercase;" />
+          </div>
+          <div class="booking-field" id="discount-ref-wrap" style="display:none;">
+            <label for="discount-ref" id="discount-ref-label">Nombre de tu empresa *</label>
+            <input type="text" id="discount-ref" placeholder="Nombre de tu empresa" />
+          </div>
+        </div>
+        <span id="discount-message" style="font-size:.82rem; display:block; margin-top:.4rem; min-height:1.1rem;"></span>
+        <p class="booking-auto-discount">Estadías de 4 noches o más: <strong>10% de descuento</strong> automático · 7 noches o más: <strong>15%</strong>.</p>
+
+        <div class="booking-terms mt-3">
+          <input type="checkbox" id="terms" data-terms />
+          <label for="terms">Acepto las políticas de reserva y la <a href="/privacidad" target="_blank" rel="noopener">política de privacidad</a> de Casa Los Curazaos *</label>
+        </div>
+        <details class="booking-policy">
+          <summary>Ver políticas de reserva</summary>
+          <ul>
+            <li>Check-in desde las 4:00 p. m. · check-out hasta las 11:00 a. m.</li>
+            <li>Las reservas web <strong>no son reembolsables</strong>.</li>
+            <li>Cambio de fecha gratis hasta 8 días antes del check-in; penalidad del 50% entre 8 días y 48 horas; sin cambios con menos de 48 horas.</li>
+            <li>No se permiten fiestas, eventos ni música amplificada.</li>
+            <li>La ubicación exacta se envía por WhatsApp un día antes de la llegada.</li>
+          </ul>
+        </details>
+
+        <p style="font-size:.82rem; color:var(--ink-mute); line-height:1.55; margin:1.25rem 0 0; padding-top:1rem; border-top:1px solid var(--line);">
+          Al continuar pasas a la <strong style="color:var(--ink-soft);">pasarela de pago</strong> (tarjeta, PSE o Nequi). Se aplica un <strong>5% de comisión bancaria</strong> sobre el total.
+        </p>
+        <p style="font-size:.78rem; color:var(--ink-faint); line-height:1.5; margin-top:.6rem; margin-bottom:0;">
+          🔒 Al hacer clic en <strong style="color:var(--ink-mute);">Proceder al pago</strong>, las fechas quedan apartadas por <strong style="color:var(--ink-mute);">2 horas</strong> mientras completas el pago. Si no se finaliza en ese tiempo, se liberan automáticamente.
+        </p>
+        <button type="submit" class="btn btn-accent booking-submit mt-4" data-booking-submit>Proceder al pago →</button>
+        <p class="booking-note" data-booking-note>Selecciona una cabaña para continuar.</p>
+      </div>
+
+    </form>
+  </div>
+</section>
+
+<section class="section section-tonal">
+  <div class="container">
+    <div class="section-head">
+      <div data-reveal>
+        <p class="eyebrow section-eyebrow"><span class="dot"></span>Cómo funciona</p>
+        <h2 class="h-section">Todo automático, <em>sin esperar respuestas.</em></h2>
+      </div>
+      <p class="lede" data-reveal data-delay="1">
+        Tu reserva se confirma sola en cuanto el pago se aprueba: la web bloquea las fechas y Airbnb las sincroniza automáticamente.
+      </p>
+    </div>
+    <div class="entorno-grid">
+      <div class="entorno-card" data-reveal>
+        <p class="entorno-time">01</p>
+        <p class="entorno-place"><strong>Eliges</strong> cabaña, fechas y huéspedes en el calendario sincronizado con Airbnb.</p>
+      </div>
+      <div class="entorno-card" data-reveal data-delay="1">
+        <p class="entorno-time">02</p>
+        <p class="entorno-place"><strong>Pagas seguro</strong> con tarjeta, PSE o Nequi.</p>
+      </div>
+      <div class="entorno-card" data-reveal data-delay="2">
+        <p class="entorno-time">03</p>
+        <p class="entorno-place"><strong>Tu reserva queda en firme.</strong> Recibes la confirmación al instante.</p>
+      </div>
+      <div class="entorno-card" data-reveal data-delay="3">
+        <p class="entorno-time">04</p>
+        <p class="entorno-place"><strong>Te llegan</strong> ubicación, Wi-Fi y video del jacuzzi un día antes del check-in.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <p class="footer-brand">Casa Los <em>Curazaos</em></p>
+        <p class="footer-tagline">Refugio campestre con tres cabañas privadas en Llanogrande, Rionegro.</p>
+      </div>
+      <div>
+        <p class="footer-title">Cabañas</p>
+        <ul class="footer-list">
+          <li><a href="/cabana-luxe">Luxe</a></li>
+          <li><a href="/cabana-comfort">Comfort</a></li>
+          <li><a href="/cabana-prestige">Prestige</a></li>
+          <li><a href="/casa-completa">Deluxe House</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="footer-title">Tu reserva</p>
+        <ul class="footer-list">
+          <li><a href="/demo-reservas">Reservar</a></li>
+          <li><a href="/demo-reservas/mi-reserva">Mi Reserva</a></li>
+          <li><a href="/contacto">Contacto</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="footer-title">Legal</p>
+        <ul class="footer-list">
+          <li><a href="/privacidad">Privacidad</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© <span data-year>2026</span> Casa Los Curazaos · LEMONT GROUP S.A.S.</span>
+      <span class="footer-legal">
+        <span>Diseño: <a href="https://bayronlondono.com" target="_blank" rel="noopener">Bayron Londoño</a></span>
+        <span><a href="https://instagram.com/casaloscurazaos" target="_blank" rel="noopener">@casaloscurazaos</a></span>
+      </span>
+    </div>
+  </div>
+</footer>
+
+<a class="demo-pill" href="/demo-reservas/admin" title="Abrir el panel del hotel">
+  <span class="demo-pill-dot"></span>Demo · pagos simulados <span class="demo-pill-link">Panel del hotel →</span>
+</a>
+
+<script defer src="/lib/gsap.min.js"></script>
+<script defer src="/lib/ScrollTrigger.min.js"></script>
+<script defer src="/lib/manifest.js?v=20260831a"></script>
+<script defer src="/main.js?v=20260831c"></script>
+<script defer src="/demo-reservas/demo.js?v=20261002a"></script>
+</body>
+</html>

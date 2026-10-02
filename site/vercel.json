@@ -15,5 +15,11 @@
   ],
   "rewrites": [
     { "source": "/cabanas", "destination": "/" }
+  ],
+  "headers": [
+    {
+      "source": "/demo-reservas(.*)",
+      "headers": [{ "key": "X-Robots-Tag", "value": "noindex, nofollow" }]
+    }
   ]
 }

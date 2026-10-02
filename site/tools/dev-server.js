@@ -29,12 +29,21 @@ const MIME = {
 http.createServer((req, res) => {
   const parsed = url.parse(req.url);
   let pathname = decodeURIComponent(parsed.pathname);
-  if (pathname === "/") pathname = "/index.html";
-  const filePath = path.join(ROOT, pathname);
+  if (pathname === "/" || pathname === "/cabanas") pathname = "/index.html";
+  let filePath = path.join(ROOT, pathname);
 
   // protección path traversal
   if (!filePath.startsWith(ROOT)) {
     res.writeHead(403); res.end("forbidden"); return;
+  }
+
+  // URLs limpias como en Vercel: /beneficios → beneficios.html,
+  // /demo-reservas → demo-reservas/index.html
+  if (!path.extname(filePath)) {
+    const asHtml = filePath.replace(/[\\/]$/, "") + ".html";
+    const asIndex = path.join(filePath, "index.html");
+    if (fs.existsSync(asHtml)) filePath = asHtml;
+    else if (fs.existsSync(asIndex)) filePath = asIndex;
   }
 
   fs.stat(filePath, (err, stat) => {
